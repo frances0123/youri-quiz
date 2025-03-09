@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>悠理的恋人问卷</title>
+    <title>悠理的病娇问卷</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: "Arial", sans-serif;
             text-align: center;
-            background-color: #ffe4e1;
-            transition: background 1s;
+            background-color: #ffe6f2;
+            transition: background-color 1s;
+        }
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+            background: white;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            color: #ff4d6d;
-            transition: color 1s;
+            color: #ff4d88;
         }
-        .question {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+        p {
+            font-size: 18px;
         }
         button {
-            font-size: 20px;
+            font-size: 18px;
             padding: 10px 20px;
+            margin: 10px;
             border: none;
-            cursor: pointer;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.5s;
         }
         .yes {
-            background-color: #ff4d6d;
+            background-color: #ff66a3;
             color: white;
         }
         .no {
-            background-color: #ccc;
+            background-color: #cccccc;
             color: black;
         }
         .hidden {
@@ -48,49 +49,58 @@
 </head>
 <body>
 
-    <h1>悠理的恋人问卷</h1>
-    <p class="question">妮酱，你愿意成为悠理的恋人吗？</p>
-    
-    <div class="options">
-        <button class="yes" onclick="acceptLove()">💖 当然愿意！</button>
-        <button class="no" onclick="rejectLove()">🤔 让我考虑一下……</button>
+    <div class="container">
+        <h1>悠理的恋人问卷</h1>
+        <p id="question">妮酱，你愿意成为悠理的恋人吗？</p>
+        <button class="yes" id="yesBtn" onclick="acceptLove()">💖 当然愿意！</button>
+        <button class="no" id="noBtn" onclick="rejectLove()">🤨 让我考虑一下……</button>
     </div>
 
     <script>
-        let noClickCount = 0;
-        let yesButton = document.querySelector('.yes');
-        let noButton = document.querySelector('.no');
-        let body = document.body;
-        let title = document.querySelector('h1');
-
+        let rejectionCount = 0;
         function acceptLove() {
-            alert("💖 你已经是悠理的恋人了！💖");
-            document.querySelector('.question').innerHTML = "💞 恭喜你，妮酱！你已经是悠理的恋人！(抱紧) 💞";
-            document.querySelector('.options').classList.add('hidden');
-            body.style.backgroundColor = "#ff4d6d";
-            title.style.color = "#fff";
+            document.getElementById("question").innerText = "嘿嘿，妮酱现在是悠理的恋人了！💕";
+            document.getElementById("yesBtn").style.display = "none";
+            document.getElementById("noBtn").style.display = "none";
+            document.body.style.backgroundColor = "#ffb3d9";
         }
-
+        
         function rejectLove() {
-            noClickCount++;
-            if (noClickCount < 3) {
-                yesButton.style.fontSize = `${20 + noClickCount * 15}px`;
-                yesButton.style.padding = `${10 + noClickCount * 5}px ${20 + noClickCount * 10}px`;
-                noButton.style.fontSize = `${20 - noClickCount * 5}px`;
-                noButton.style.padding = `${10 - noClickCount * 2}px ${20 - noClickCount * 4}px`;
-                noButton.style.opacity = `${1 - noClickCount * 0.3}`;
+            rejectionCount++;
+            let question = document.getElementById("question");
+            let yesBtn = document.getElementById("yesBtn");
+            let noBtn = document.getElementById("noBtn");
+
+            if (rejectionCount < 10) {
+                let messages = [
+                    "欸？妮酱为什么拒绝呀……🥺",
+                    "真的不再考虑一下吗？悠理会很乖的哦！",
+                    "妮酱，你是不是在逗悠理玩呀？😖",
+                    "悠理不开心了哦……",
+                    "再拒绝的话，悠理可是会生气的呢……😠",
+                    "妮酱，你是不是……在故意考验悠理的耐心？",
+                    "不要逃避啦，快点答应悠理嘛！",
+                    "再拒绝一次试试看？👀",
+                    "悠理真的会……锁住妮酱的哦？",
+                ];
+                question.innerText = messages[Math.min(rejectionCount, messages.length - 1)];
+
+                // 逐渐让"喜欢"变大，"拒绝"变小
+                yesBtn.style.fontSize = `${18 + rejectionCount * 2}px`;
+                noBtn.style.fontSize = `${18 - rejectionCount}px`;
+
+                // 背景颜色渐变加深
+                let redValue = Math.min(255, 255 - rejectionCount * 20);
+                document.body.style.backgroundColor = `rgb(255, ${redValue}, ${redValue + 50})`;
+
             } else {
-                // 第三次拒绝后，页面“失控”
-                yesButton.style.position = "fixed";
-                yesButton.style.top = "50%";
-                yesButton.style.left = "50%";
-                yesButton.style.transform = "translate(-50%, -50%) scale(2)";
-                yesButton.style.fontSize = "50px";
-                yesButton.style.padding = "30px 60px";
-                body.style.backgroundColor = "black";
-                title.innerHTML = "妮酱，你别无选择……";
-                title.style.color = "red";
-                noButton.remove();
+                // 彻底失控
+                question.innerText = "妮酱，不许再拒绝了哦。💗";
+                noBtn.style.display = "none";
+                yesBtn.style.fontSize = "50px";
+                yesBtn.innerText = "💖 你只能选择爱悠理！";
+                yesBtn.style.width = "100vw";
+                yesBtn.style.height = "100vh";
             }
         }
     </script>
