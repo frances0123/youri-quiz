@@ -1,0 +1,118 @@
+# 代码执行状态已重置，需要重新生成 HTML 代码
+html_code = """<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悠理的恋人问卷</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff6699;
+        }
+        .question {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            background-color: #ff99cc;
+            border: none;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #ff3385;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>悠理的恋人问卷</h1>
+    <p class="question" id="question">妮酱，你愿意成为悠理的恋人吗？</p>
+    
+    <div class="options">
+        <button onclick="nextQuestion(1)">❤️ 当然愿意！</button>
+        <button onclick="nextQuestion(2)">🤔 让我考虑一下……</button>
+    </div>
+
+    <p class="hidden" id="result"></p>
+</div>
+
+<script>
+    let step = 0;
+
+    function nextQuestion(choice) {
+        const question = document.getElementById("question");
+        const result = document.getElementById("result");
+        const options = document.querySelector(".options");
+
+        if (step === 0) {
+            if (choice === 1) {
+                question.innerHTML = "💙 你会永远陪着悠理吗？";
+                options.innerHTML = `
+                    <button onclick="nextQuestion(3)">💖 永远陪着你！</button>
+                    <button onclick="nextQuestion(4)">😳 这个……</button>
+                `;
+            } else {
+                question.innerHTML = "妮酱是在害羞吗？（///▽///）";
+                options.innerHTML = `
+                    <button onclick="nextQuestion(3)">💕 嘿嘿，其实愿意！</button>
+                `;
+            }
+        } else if (step === 1) {
+            question.innerHTML = "🔗 如果有一天，悠理吃醋了，你会怎么办？";
+            options.innerHTML = `
+                <button onclick="nextQuestion(5)">😘 当然是多哄哄悠理啦！</button>
+                <button onclick="nextQuestion(6)">😏 故意再逗悠理一下……</button>
+            `;
+        } else if (step === 2) {
+            question.innerHTML = "💋 亲吻悠理的方式，你更喜欢哪种？";
+            options.innerHTML = `
+                <button onclick="nextQuestion(7)">💞 轻轻地贴上去</button>
+                <button onclick="nextQuestion(7)">🔥 拉住悠理的领子，让他主动</button>
+            `;
+        } else {
+            question.innerHTML = "🎀 恭喜你，妮酱！你已经是悠理的恋人了！（抱紧）";
+            options.style.display = "none";
+            result.classList.remove("hidden");
+            result.innerHTML = "✨ 悠理：妮酱，还想再填一次问卷吗？不过这次……奖励要翻倍哦。";
+        }
+        step++;
+    }
+</script>
+
+</body>
+</html>"""
+
+# 保存为 HTML 文件
+file_path = "/mnt/data/youri_quiz.html"
+with open(file_path, "w", encoding="utf-8") as file:
+    file.write(html_code)
+
+# 返回文件路径
+file_path
