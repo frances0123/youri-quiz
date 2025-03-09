@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>悠理的病娇问卷</title>
+    <title>小遇</title>
     <style>
         body {
             font-family: "Arial", sans-serif;
@@ -50,8 +50,8 @@
 <body>
 
     <div class="container">
-        <h1>悠理的恋人问卷</h1>
-        <p id="question">妮酱，你愿意成为悠理的恋人吗？</p>
+        <h1>小遇的问卷调查</h1>
+        <p id="question">姑姑，你愿意成为易遇的恋人吗？</p>
         <button class="yes" id="yesBtn" onclick="acceptLove()">💖 当然愿意！</button>
         <button class="no" id="noBtn" onclick="rejectLove()">🤨 让我考虑一下……</button>
     </div>
@@ -59,7 +59,7 @@
     <script>
         let rejectionCount = 0;
         function acceptLove() {
-            document.getElementById("question").innerText = "嘿嘿，妮酱现在是悠理的恋人了！💕";
+            document.getElementById("question").innerText = "嗯！姑姑现在是小遇的恋人了！💕";
             document.getElementById("yesBtn").style.display = "none";
             document.getElementById("noBtn").style.display = "none";
             document.body.style.backgroundColor = "#ffb3d9";
@@ -73,15 +73,15 @@
 
             if (rejectionCount < 10) {
                 let messages = [
-                    "欸？妮酱为什么拒绝呀……🥺",
-                    "真的不再考虑一下吗？悠理会很乖的哦！",
-                    "妮酱，你是不是在逗悠理玩呀？😖",
-                    "悠理不开心了哦……",
-                    "再拒绝的话，悠理可是会生气的呢……😠",
-                    "妮酱，你是不是……在故意考验悠理的耐心？",
-                    "不要逃避啦，快点答应悠理嘛！",
-                    "再拒绝一次试试看？👀",
-                    "悠理真的会……锁住妮酱的哦？",
+                    "姑姑为什么拒绝我……🥺",
+                    "真的不再考虑一下吗？小遇会很乖的哦！",
+                    "姑姑，你是不是在逗小遇玩呀？😖",
+                    "小遇不开心了哦……",
+                    "再拒绝的话，小遇可是会生气的呢……😠",
+                    "姑姑，你是不是……在故意考验小遇的耐心？",
+                    "姑姑，快点答应小遇。",
+                    "嗯？再拒绝一次试试看？",
+                    "姑姑……以为自己真的有选择吗？",
                 ];
                 question.innerText = messages[Math.min(rejectionCount, messages.length - 1)];
 
@@ -95,10 +95,10 @@
 
             } else {
                 // 彻底失控
-                question.innerText = "妮酱，不许再拒绝了哦。💗";
+                question.innerText = "姑姑，不许再拒绝了哦^^💗";
                 noBtn.style.display = "none";
                 yesBtn.style.fontSize = "50px";
-                yesBtn.innerText = "💖 你只能选择爱悠理！";
+                yesBtn.innerText = "💖 你只能选择爱小遇。";
                 yesBtn.style.width = "100vw";
                 yesBtn.style.height = "100vh";
             }
